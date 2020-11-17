@@ -1,0 +1,101 @@
+\documentclass{ctexart}
+\usepackage[
+    a4paper,
+    top=0.8in,
+    left=0.8in,
+    right=0.8in,
+    bottom=1in
+]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{IEEEtrantools}
+\usepackage{array}
+\usepackage{tabularx}
+\pagestyle{plain}
+
+\theoremstyle{definition}
+\newtheorem{definition}{定义}
+
+\theoremstyle{definition}
+\newtheorem{example}{例}
+
+\theoremstyle{plain}
+\newtheorem{prop}{命题}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{定理}
+
+\theoremstyle{plain}
+\newtheorem{lemma}{引理}
+
+\theoremstyle{definition}
+\newtheorem{property}{性质}
+
+\newcommand{\T}{\mathsf{T}}
+\newcommand{\nat}{\mathbb{N}^\star}
+\newcommand{\pnat}{\mathbb{N}^\star}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\preal}{\mathbb{R}^{+}}
+\newcommand{\integer}{\mathbb{Z}}
+
+
+\begin{document}
+\section*{习题3.3}
+\noindent 1. 叙述函数极限$\displaystyle\lim_{n\to +\infty} f(x)$的归结原则，并应用它证明$\displaystyle\lim_{x \to +\infty} \cos \, x$不存在．
+
+\noindent 答：设$f$为定义在正无穷邻域$[a, +\infty)$上的函数，$\displaystyle\lim_{n\to +\infty} f(x)$存在的充分必要条件是：对任何含于$[a, +\infty)$的数列$\{x_n\}$，极限$\displaystyle\lim_{n\to +\infty} f(x_n)$都存在且相等．
+
+\begin{proof}
+令$f(x) = \cos \, x$，再令$x_n = 2\pi n$，$y_n = \displaystyle\frac{\pi}{2} + 2\pi n$，则$\{x_n\}$与$\{y_n\}$都是趋于$+\infty$的数列．而
+\begin{equation}
+    \lim_{n \to +\infty} f(x_n) = \lim_{n \to +\infty} f(2 \pi n) = \lim_{n\to +\infty} \cos \, 2\pi n = \lim_{n \to +\infty} 1 = 1
+\end{equation}
+并且
+\begin{equation}
+    \lim_{n \to +\infty} f(y_n) = \lim_{n \to +\infty} f(\frac{\pi}{2} + 2 \pi n) = \lim_{n \to +\infty} \cos \, \left(\frac{\pi}{2}+2 \pi n\right) = \lim_{n \to +\infty} 0 = 0
+\end{equation}
+也就是说$\displaystyle \lim_{n\to +\infty} f(x_n) \neq \lim_{n \to +\infty} f(y_n)$，从而根据归结原则，$\displaystyle\lim_{n \to +\infty} \cos \, x$不存在．
+\end{proof}
+
+\noindent 2. 设$f$为定义在$[a, +\infty)$上的增（减）函数．证明：$\displaystyle \lim_{n \to +\infty} f(x)$存在的充要条件是$f$在$[a, +\infty)$上有上（下）界．
+\begin{proof}
+充分性．
+
+\noindent 设$f$在$[a, +\infty)$上有上界，并且在$[a, +\infty)$上是增函数．设$\{ x_n \}$是一个含于$[a, +\infty)$的数列，由于$f$在$[a, +\infty)$上是增函数，所以对任意$x \in [a, +\infty)$都有$f(a) \leq f(x)$，从而对任意$n \in \nat$，都有$f(a) \leq f(x_n)$，这说明数列$\{ f(x_n) \}$有下界．设$u$是$f$在$[a, +\infty)$上的一个上界，于是对任意$x \in [a, +\infty)$，都有$f(x) \leq u$，从而对任意$n \in \nat$，都有$f(x_n) \leq u$，从而$u$也是数列$\{ f(x_n) \}$的一个上界，从而数列$\{ f(x_n) \}$有上界．显然，集合$\{ f(x_n) : n \in \nat \}$是非空的，那么根据确界原理，$\{ f(x_n) : n \in \nat \}$有唯一的上确界，设为$y_0$．现在我们来证这个$y_0$正是$f(x)$当$x \to +\infty$时候的极限．
+
+\noindent 由于$y_0$是$\{ f(x_n) : n \in \nat \}$的上确界，于是，对任意$\epsilon > 0$，存在$f(x_\epsilon) \in \{ f(x_n) : n \in \nat \}$，使得
+\begin{equation}
+    y_0 - f(x_\epsilon) < \epsilon
+\end{equation}
+由于$\{ x_n \}$趋于$+\infty$，所以，存在$N \in \nat$，使得当$n > N$时，有$x_n > x_\epsilon$恒成立，根据函数$f$的单调性，当$x_n > x_\epsilon$时，有$f(x_n) > x_\epsilon$，但是由于$y_0$是$\{ f(x_n):n\in\nat\}$的上确界，所以$f(x_n) < y_0$，所以
+\begin{equation}
+    0 < y_0 - f(x_n) < y_0 - f(x_\epsilon) < \epsilon
+\end{equation}
+也就是
+\begin{equation}
+    |f(x_n) - y_0| < \epsilon
+\end{equation}
+这就证明了$y_0$是$f(x)$当$x \to +\infty$时候的极限，从而$f(x)$对于$x \to +\infty$的极限存在，于是充分性得证．
+
+\noindent 必要性．
+由$f$的单调性可知，对任意$x \in [a, +\infty)$，恒有$f(a) \leq f(x)$，这说明$f(a)$是$f$在$[a, +\infty)$上的一个下界，于是$f$在$[a, +\infty)$上有下界．
+
+\noindent 设$y_0$是$f(x)$当$x \to +\infty$时候的极限．我们来证$y_0$是$f$在$[a, +\infty)$上的一个上界．采用反证法．假设$y_0$不是$f$在$[a, +\infty)$上的上界，那么必然存在$x_0 \in [a, +\infty)$，使得$f(x_0) > y_0$，设$\epsilon_0 = f(x_0) - y_0$，于是$\epsilon_0 > 0$，并且根据$f$的单调性，对所有$x > x_0$，都有$f(x) > f(x_0) > f_0$，从而$f(x) - y_0 > \epsilon_0$，但是这与$y_0$作为$f(x)$的极限的定义不符，从而矛盾．
+\end{proof}
+
+% \section*{习题6.1}
+% \noindent 1. 试讨论下列函数在指定区间内是否存在一点$\epsilon$，使$f^\prime (\epsilon) = 0$；
+% \begin{table}[H]
+%     \centering
+%     \begin{tabularx}{\textwidth} {  >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X  }
+%        (1)~~$\displaystyle f(x) = \begin{cases}
+%            x \sin \, \displaystyle\frac{1}{x}, & 0 < x \leq \displaystyle\frac{1}{\pi}, \\
+%            0, & x = 0;
+%        \end{cases}$ & (2)~~$f(x) = |x|, \; -1 \leq x \leq 1$
+%       \end{tabularx}
+% \end{table}
+\end{document}
