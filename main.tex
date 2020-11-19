@@ -87,15 +87,44 @@
 \noindent 设$y_0$是$f(x)$当$x \to +\infty$时候的极限．我们来证$y_0$是$f$在$[a, +\infty)$上的一个上界．采用反证法．假设$y_0$不是$f$在$[a, +\infty)$上的上界，那么必然存在$x_0 \in [a, +\infty)$，使得$f(x_0) > y_0$，设$\epsilon_0 = f(x_0) - y_0$，于是$\epsilon_0 > 0$，并且根据$f$的单调性，对所有$x > x_0$，都有$f(x) > f(x_0) > f_0$，从而$f(x) - y_0 > \epsilon_0$，但是这与$y_0$作为$f(x)$的极限的定义不符，从而矛盾．
 \end{proof}
 
-% \section*{习题6.1}
-% \noindent 1. 试讨论下列函数在指定区间内是否存在一点$\epsilon$，使$f^\prime (\epsilon) = 0$；
-% \begin{table}[H]
-%     \centering
-%     \begin{tabularx}{\textwidth} {  >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X  }
-%        (1)~~$\displaystyle f(x) = \begin{cases}
-%            x \sin \, \displaystyle\frac{1}{x}, & 0 < x \leq \displaystyle\frac{1}{\pi}, \\
-%            0, & x = 0;
-%        \end{cases}$ & (2)~~$f(x) = |x|, \; -1 \leq x \leq 1$
-%       \end{tabularx}
-% \end{table}
+\hangindent=13pt
+\noindent 3. (1) 叙述极限$\displaystyle\lim_{x \to -\infty} f(x)$的柯西准则；\\
+(2) 根据柯西准则叙述$\displaystyle\lim_{x \to -\infty} f(x)$不存在的充分必要条件，并应用它证明$\displaystyle\lim_{x \to -\infty} \sin \, x$不存在．
+
+\noindent 3. (1) 答：设函数$f$在$U(-\infty)$上有定义．$\displaystyle\lim_{x \to -\infty} f(x)$存在的充分必要条件是：任给$\epsilon > 0$，都存在$M < 0$，使得对任意$x, y < M$，都有$|f(x) - f(y)| < \epsilon$．
+
+\noindent 3. (2) 答：设函数$f$在$U(-\infty)$上有定义，$\displaystyle\lim_{x \to -\infty} f(x)$不存在的充分必要条件是：存在$\epsilon_0 > 0$，使得对任意$M < 0$，都存在$x, y < M$满足$|f(x) - f(y)| \geq \epsilon_0$．
+
+\begin{proof}
+取$\epsilon_0 = 1$，并且令$\displaystyle x = - 2 \pi n, y = \frac{\pi}{2} - 2 \pi n$，那么数列$\{ x(n) \}$和数列$\{ y(n) \}$都以$-\infty$作为极限，于是对任意$M < 0$，存在$N \in \nat$，只要$n \geq N$，就有
+\begin{equation}
+    x(n) < M, y(n) < M
+\end{equation}
+并且根据三角函数的性质知对任意$n \in \nat$都有
+\begin{equation}
+    |f(x(n)) - f(y(n))| = |\sin \, 2 \pi n - \sin \, \left( \frac{\pi}{2} - 2 \pi n \right)| =|0 - 1| = 1 \geq \epsilon_0 = 1
+\end{equation}
+从而依据柯西收敛准则，$\displaystyle\lim_{n\to\infty} \sin \, x$不存在．
+\end{proof}
+
+\noindent 4. 设$f$在$U^{\circ}(x_0)$内有定义．证明：若对任何数列$\{ x_n \} \subset U^{\circ}(x_0)$且$\displaystyle\lim_{n \to \infty} x_n = x_0$，极限$\displaystyle\lim_{n \to \infty} f(x_n)$都存在，则所有这些极限都相等．
+\begin{proof}
+任取极限为$x_0$的两个数列，分别记做$\{ x_n \}$和$\{ y_n \}$，由于$\displaystyle\lim_{n\to\infty} f(x_n)$存在，故对任意$\epsilon > 0$，存在$N_1 \in \nat$，使得当$n > N_1$时，有
+\begin{equation}
+    |f(x_n) - f(x_{n+p})| < \frac{1}{2} \epsilon
+\end{equation}
+对任意$p \in \nat$成立．同理，存在$N_2 \in \nat$，使得当$n > N_2$时，有
+\begin{equation}
+    |f(y_n) - f(y_{n+p})| < \frac{1}{2} \epsilon
+\end{equation}
+对任意$p \in \nat$成立．让$p$趋于$+ \infty$，那么当$n > \max \{ N_1, N_2 \}$时，有
+\begin{equation}
+    |f(x_n) - f(x_0)| < \frac{1}{2} \epsilon, \quad |f(y_n) - f(x_0)| < \frac{1}{2} \epsilon
+\end{equation}
+同时成立．于是有
+\begin{equation}
+    |f(x_n) - f(y_n)| < |f(x_n) -f(x_0)|+|f(y_n)-f(x_0)|<\frac{1}{2}\epsilon+\frac{1}{2}\epsilon = \epsilon
+\end{equation}
+这说明$\displaystyle\lim_{n\to\infty} x_n = \displaystyle\lim_{n\to\infty}y_n$．
+\end{proof}
 \end{document}
